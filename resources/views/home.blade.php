@@ -8,23 +8,12 @@
 </head>
 
 <body>
-    <h1>RACINE DU SITE</h1>
-
     @extends('./layout/app')
 
     @section('content')
-        <p>le contenu</p>
         {{-- GESTION DES ERREURS PAR LARAVEL MEME --}}
 
-        @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
+
 
 
         {{-- GESTION PERSONNALISEE DES ERREURS --}}
@@ -38,13 +27,50 @@
         @endif --}}
 
 
-        <form action="/home" method="POST">
-            @method('post')
-            @csrf
-            <input type="text" placeholder="Nom" name="nom" value={{ old('nom') }}>
-            <input type="email" placeholder="Email" name="email" value={{ old('email') }}>
-            <button type="submit">Send</button>
-        </form>
+        <div class="card mt-2">
+            <div class="card-body">
+        @if (session()->has('success'))
+        <div class="alert alert-success">
+            {{ session()->get('success') }}
+        </div>
+    @endif
+                <form action="/articles" method="POST" class="form-product">
+                    @method('post')
+                    @csrf
+                    <h4>Enregidtrer un article</h4>
+                    <div class="form-group">
+                        <label for="titre">Titre</label>
+                        <input class="form-control" type="text" placeholder="Titre de l'article" name="titre"
+                            value={{ old('titre') }}>
+
+                            @error('titre')
+<div class="text text-danger">
+{{ $message }}
+
+
+</div>
+
+
+                            @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input class="form-control" type="email" placeholder="Email" name="email"
+                            value={{ old('email') }}>
+                    </div>
+                    <button class="btn btn-success" type="submit">Ajouter</button>
+                </form>
+<ul class="list-group">
+                @forelse ($articles as $article)
+<li class="list-group-item">{{ $article -> titre }}</li>
+                @empty
+<p class="text text-infos"> Aucun article trouvé</p>
+                @endforelse
+
+                  </ul>
+
+            </div>
+        </div>
     @endsection
 
 </body>

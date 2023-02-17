@@ -16,13 +16,10 @@
 </head>
 
 <body>
-    <h1>APP</h1>
-    <h1>site header</h1>
 
-    <div>
+    <div class="container">
         @yield('content')
     </div>
-<h1>site footer</h1>
 </body>
 
 </html>

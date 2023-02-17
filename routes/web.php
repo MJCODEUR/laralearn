@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TestController;
+use App\Http\Controllers\ArticleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,9 +22,8 @@ Route::get('/infos', function () {
 
 Route::get('/test/{nom}', [TestController::class, 'method1']);
 Route::get('/exemple', [TestController::class, 'exemple'])->name('profile');
-Route::get('/', [TestController::class, 'home']);
-// Route::post('/home', [TestController::class, 'ht']);
-Route::post('/home', [TestController::class, 'store']);
+Route::get('/', [ArticleController::class, 'index']);
+Route::post('/articles', [ArticleController::class, 'store']);
 
 Route::get('/acces/{nom}', [TestController::class, 'acces']);
 
