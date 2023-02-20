@@ -10,16 +10,19 @@ class ArticleController extends Controller
 {
     public function index (){
 
+
         $articles = Article::all();
 
         $numero = ["1", "2", "3", "4"];
         $nom = "Mj codeur";
         return view('home', [
             "articles" => $articles,
-            // "nom" => $nom,
-            // "age" => 16,
-            // "product" => "",
-            // "nums" => $numero
+
+                            // "nom" => $nom,
+                            // "age" => 16,
+                            // "product" => "",
+                            // "nums" => $numero
+
         ]);
     }
 
