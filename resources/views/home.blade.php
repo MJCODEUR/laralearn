@@ -4,27 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>,j code laravel</title>
 </head>
 
 <body>
     @extends('./layout/app')
 
     @section('content')
-        {{-- GESTION DES ERREURS PAR LARAVEL MEME --}}
-
-
-
-
-        {{-- GESTION PERSONNALISEE DES ERREURS --}}
-        {{-- @if ($errors)
-            @error('nom')
-                <p>veuillez vérifier le contenu du champ nom !</p>
-            @enderror
-            @error('email')
-                <p>le champ "email est requi !!!"</p>
-            @enderror
-        @endif --}}
 
 
         <div class="card mt-2">
