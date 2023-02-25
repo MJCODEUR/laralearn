@@ -26,14 +26,15 @@ class ArticleRequest extends FormRequest
         return [
 
             'titre' => 'required|min: 3',
+            'description' => 'required|min: 5',
         ];
     }
     public function messages() {
         return [
            'titre.required' => 'le titre est exigé',
            'titre.min' => 'le titre doit avoir au moin 3 ...',
-        //    'email.required' => 'le email est exigé',
-        //    'email.email' => 'verifier Email ...'
+           'description.required' => 'le description est exigé',
+           'description.min' => 'la dscription doit atteindre au moin 5 ...'
         ];
     }
 }

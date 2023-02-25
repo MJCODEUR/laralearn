@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,20 +16,18 @@ use App\Http\Controllers\ArticleController;
 |
 */
 
-Route::get('/infos', function () {
-    return view('infos');
-});
-// Route::view('/acces', 'acces', ['name' => 'Taylor']);
+Route::get('register', [UserController::class, 'register'])->name('regidter');
+Route::get('/', [ArticleController::class, 'index'])->name('home');
 
-Route::get('/test/{nom}', [TestController::class, 'method1']);
-Route::get('/exemple', [TestController::class, 'exemple'])->name('profile');
-Route::get('/', [ArticleController::class, 'index']);
-Route::post('/articles', [ArticleController::class, 'store']);
 
-Route::get('/acces/{nom}', [TestController::class, 'acces']);
+Route::prefix('articles')->group(function(){
+    Route::post('/', [ArticleController::class, 'store'])->name('articles');
+    // Route::get('/{id}', [ArticleController::class, 'show'])->name('aticles.show');
+    Route::get('/{article}', [ArticleController::class, 'show'])->name('articles.show');
+    Route::get('/{article}/edit', [ArticleController::class, 'edit'])->name('articles.edit');
+    Route::put('/{article}/update', [ArticleController::class, 'update'])->name('articles.update');
+    Route::delete('/{article}/delete', [ArticleController::class, 'delete'])->name('articles.delete');
 
-Route::get('/acces', function(){
-    return view('acces');
 });
 
 

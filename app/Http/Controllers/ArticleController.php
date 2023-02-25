@@ -28,9 +28,51 @@ class ArticleController extends Controller
 
     public function store (Article $article, ArticleRequest $request) {
         Article::create([
-            'titre' => $request->titre
+            'titre' => $request->titre,
+            'description' => $request->description
         ]);
 
         return redirect()->back()->with('success', 'L\'article a bien été enregistré');
+    }
+
+
+    // public function show($id){
+    public function show(Article $article){
+
+
+        // $article = Article::find($id);
+        // dd( $article);
+        return view('articles.show', [
+            "article" => $article,
+        ]);
+
+    }
+    public function edit(Article $article){
+
+  return view('articles.edit', [
+            "article" => $article,
+        ]);
+
+
+    }
+    public function update(Article $article, ArticleRequest $request){
+
+
+// la variable $article recuppere ls données à modifier
+
+// c'est la variable $request qui recuppère les données modifiées
+
+$article->titre = $request->titre;
+$article->description = $request->description;
+
+// dd($article->titre);
+$article->SAVE();
+return redirect('/')->with('success', 'L\'article a bien été mis à jour');
+    }
+
+    public function delete(Article $article){
+
+$article->DELETE();
+return redirect('/')->with('success', 'L\'article a bien été supprimé');
     }
 }
